@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from "@angular/forms"
 import { RatingModule } from "../shared/components/rating/rating.module"
 import { TagsModule } from "../shared/components/tags/tags.module"
 import { PlaceEditComponent } from './components/place-edit/place-edit.component';
+import { MarkdownEditorModule } from './components/markdown-editor/markdown-editor.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PlaceEditComponent } from './components/place-edit/place-edit.component
     CommonModule,
     RatingModule,
     ReactiveFormsModule,
-    TagsModule
+    TagsModule,
+    MarkdownEditorModule
   ]
 })
 export class PlaceEditDialogModule { }
