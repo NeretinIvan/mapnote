@@ -56,8 +56,6 @@ export class RatingComponent implements OnInit, ControlValueAccessor {
   }
 
   public onClickStar(index: number): void {
-    if (this.isDisabled) return;
-
     this.writeValue(index + 1);
     this.updateFormControlTouchState()
     this.updateFormControlValue(this.stars.filter(isSelected => isSelected).length)

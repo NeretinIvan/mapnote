@@ -28,5 +28,9 @@
 }
 
 .star-button.is-disabled {
-  color:#989898;
+  color:#AAAAAA;
+}
+
+.star-button.is-selected.is-disabled {
+  color: #777777;
 }
