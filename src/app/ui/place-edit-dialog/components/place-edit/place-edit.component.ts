@@ -16,6 +16,8 @@ export class PlaceEditComponent implements OnInit {
   })
 
   constructor() {
+    this.form.get('rating').enable();
+    setTimeout(() => {this.form.get('rating').disable(); console.log("disabled")}, 5000);
   }
 
   ngOnInit(): void {

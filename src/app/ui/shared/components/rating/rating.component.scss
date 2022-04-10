@@ -22,3 +22,11 @@
 .star-button.is-selected {
   color: hsl(45deg 100% 51%);
 }
+
+.star-button {
+  color:#D3D3D3;
+}
+
+.star-button.is-disabled {
+  color:#989898;
+}
