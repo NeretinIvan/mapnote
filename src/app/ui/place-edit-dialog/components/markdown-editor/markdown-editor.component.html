@@ -15,9 +15,10 @@
 <div *ngIf="isRedacting">
     <textarea  
         class="content" 
-        [value]="markdown.getRaw()"
+        [(ngModel)]="markdown.raw"
         [disabled]="isDisabled"
-        (input)="onEditorChange($event)"
+        (input)="onEditorChanged(markdown)"
+        (focus)="onEditorTouched()"
         id="description"
         placeholder="Описание места...">
     </textarea>

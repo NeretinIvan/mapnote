@@ -19,22 +19,13 @@ export class MarkdownEditorComponent implements ControlValueAccessor {
   public isDisabled: boolean;
   public isRedacting: boolean = true;
   public previewHtml: string;
-
-  public writtenMarkdown: string = "";
-  private markdown: Markdown = new Markdown();
+  public markdown: Markdown = new Markdown("");
 
   constructor(private sanitizer: DomSanitizer) {
-    //todo: delete later
-    //setTimeout(() => {this.isDisabled = true;}, 5000);
   }
 
-  private registerEditorTouched(): void {}
-  private registerEditorChange(newMarkdown: Markdown): void {}
-
-  public onEditorChange(e: InputEvent): void {
-    this.markdown.setRaw(e.target["value"]);
-    this.registerEditorChange(this.markdown);
-  }
+  public onEditorTouched(): void {}
+  public onEditorChanged(newMarkdown: Markdown): void {}
 
   public switchToEditing(): void {
     this.isRedacting = true;
@@ -46,15 +37,15 @@ export class MarkdownEditorComponent implements ControlValueAccessor {
   }
 
   public writeValue(value: string): void {
-    this.markdown.setRaw(value);
+    this.markdown = new Markdown(value);
   }
 
   public registerOnChange(fn: (newMarkdown: Markdown) => void): void {
-    this.registerEditorChange = fn;
+    this.onEditorChanged = fn;
   }
 
   public registerOnTouched(fn: () => void): void {
-    this.registerEditorTouched = fn;
+    this.onEditorTouched = fn;
   }
 
   public setDisabledState(isDisabled: boolean): void {

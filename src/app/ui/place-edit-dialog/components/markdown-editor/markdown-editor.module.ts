@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MarkdownEditorComponent } from './markdown-editor.component';
-import { ReactiveFormsModule } from "@angular/forms"
+import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 
 
 @NgModule({
@@ -12,7 +12,8 @@ import { ReactiveFormsModule } from "@angular/forms"
     MarkdownEditorComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class MarkdownEditorModule { }
