@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, ElementRef, OnInit } from "@angular/core"
 import { FormControl } from "@angular/forms"
+import { DialogService } from "src/app/dialog.service"
 import { MapService } from "../../../../map.service"
 
 @Component({
@@ -11,7 +12,10 @@ export class ShellComponent implements OnInit {
   public isShowAddButton: boolean = false
   public searchFormControl: FormControl = new FormControl()
 
-  constructor(private mapService: MapService) {
+  constructor(
+    private mapService: MapService,
+    private element: ElementRef<HTMLElement>,
+    private dialogService: DialogService) {
   }
 
   public ngOnInit(): void {
@@ -20,7 +24,7 @@ export class ShellComponent implements OnInit {
         this.isShowAddButton = true
       })
 
-      map.addEventListener("blur", () => {
+      this.element.nativeElement.addEventListener("click", () => {
         this.isShowAddButton = false
       })
     })
@@ -31,5 +35,6 @@ export class ShellComponent implements OnInit {
   }
 
   public onClickAddButton(): void {
+    this.dialogService.showDialog(this.dialogService.dialogs.PlaceEdit)
   }
 }

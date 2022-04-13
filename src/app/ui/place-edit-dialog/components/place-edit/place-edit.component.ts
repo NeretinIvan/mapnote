@@ -23,6 +23,6 @@ export class PlaceEditComponent implements OnInit {
   }
 
   public onClickCancelButton(): void {
-
+    this.dialogService.showDialog(this.dialogService.dialogs.MapView)
   }
 }
