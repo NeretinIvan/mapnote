@@ -1,0 +1,28 @@
+<div class="switching-panel">
+    <button 
+        class="tab" 
+        (click)="switchToEditing()"
+        [class.is-active]="isRedacting">
+        Контент
+    </button>
+    <button 
+        class="tab" 
+        (click)="switchToPreview()"
+        [class.is-active]="isRedacting === false">
+        Результат
+    </button>
+</div>
+<div *ngIf="isRedacting">
+    <textarea  
+        class="content" 
+        [(ngModel)]="markdown.raw"
+        [disabled]="isDisabled"
+        (input)="onEditorChanged(markdown)"
+        (focus)="onEditorTouched()"
+        id="description"
+        placeholder="Описание места...">
+    </textarea>
+</div>
+<div *ngIf="isRedacting === false">
+    <div class="content" [innerHtml]="previewHtml"></div>
+</div>

@@ -6,6 +6,7 @@ import { PhotosUploaderModule } from "../shared/components/photos-uploader/photo
 import { RatingModule } from "../shared/components/rating/rating.module"
 import { TagsModule } from "../shared/components/tags/tags.module"
 import { PlaceEditComponent } from './components/place-edit/place-edit.component';
+import { MarkdownEditorModule } from './components/markdown-editor/markdown-editor.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { PlaceEditComponent } from './components/place-edit/place-edit.component
     RatingModule,
     ReactiveFormsModule,
     TagsModule,
-    MdEditorModule,
+    MarkdownEditorModule,
     PhotosUploaderModule
   ]
 })
