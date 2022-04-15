@@ -1,4 +1,4 @@
-import convertToHtml from 'node_modules/markdown-to-html-converter'
+import convertToHtml from 'markdown-to-html-converter'
 
 export class Markdown {
     public raw: string;
