@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core"
+import { LatLng } from "leaflet"
 
 @Injectable({
   providedIn: "root"
@@ -9,6 +10,8 @@ export class DialogService {
   public showDialog(dialog: Dialog): void {
     this.currentDialog = dialog
   }
+  //public isShowCreateOrEditDialog: boolean = false
+  public isCurrentEditLatLng: LatLng | null = null
 
   public getCurrentDialog(): Dialog {
     return this.currentDialog

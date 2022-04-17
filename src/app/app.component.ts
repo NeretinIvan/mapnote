@@ -10,8 +10,9 @@ import { MapService } from "./map.service"
   styleUrls: [ "./app.component.scss" ]
 })
 export class AppComponent implements AfterViewInit {
+
   constructor(private mapService: MapService,
-              public dialogService: DialogService) {
+              public readonly dialogService: DialogService) {
   }
 
   public ngAfterViewInit(): void {
