@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit } from "@angular/core"
 import { FormControl } from "@angular/forms"
-import { DialogService } from "src/app/dialog.service"
+import { LeafletMouseEvent } from "leaflet"
+import { DialogService } from "../../../../dialog.service"
 import { MapService } from "../../../../map.service"
 
 @Component({
@@ -20,8 +21,9 @@ export class ShellComponent implements OnInit {
 
   public ngOnInit(): void {
     this.mapService.isReady.then((map) => {
-      map.addEventListener("click", (event) => {
+      map.addEventListener("click", (event: LeafletMouseEvent) => {
         this.isShowAddButton = true
+        this.dialogService.isCurrentEditLatLng = event.latlng
       })
 
       this.element.nativeElement.addEventListener("click", () => {
