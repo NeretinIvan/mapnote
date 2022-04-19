@@ -20,8 +20,6 @@ export class RatingComponent implements OnInit, ControlValueAccessor {
   @Input()
   public readonly: boolean = false
 
-  public isDisabled: boolean = false;
-
   constructor() {
   }
 
