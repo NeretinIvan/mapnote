@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit } from "@angular/core"
+import { Component, ElementRef, OnInit, Output, EventEmitter } from "@angular/core"
 import { FormControl } from "@angular/forms"
 import { LeafletMouseEvent } from "leaflet"
 import { DialogService } from "../../../../dialog.service"
 import { MapService } from "../../../../map.service"
+import { MapMarkerRendererService } from "src/app/map-marker-renderer.service"
 
 @Component({
   selector: "mn-shell",
@@ -16,7 +17,8 @@ export class ShellComponent implements OnInit {
   constructor(
     private mapService: MapService,
     private element: ElementRef<HTMLElement>,
-    private dialogService: DialogService) {
+    private dialogService: DialogService,
+    private mapMarkerRenderer: MapMarkerRendererService) {
   }
 
   public ngOnInit(): void {
@@ -40,7 +42,7 @@ export class ShellComponent implements OnInit {
     this.dialogService.showDialog(this.dialogService.dialogs.PlaceEdit)
   }
 
-  public onChangeSelectedTags(e: Event): void {
-    console.log(e)
+  public onChangeSelectedTags(tags: string[]): void {
+    this.mapMarkerRenderer.renderMarkers(tags)
   }
 }

@@ -55,6 +55,21 @@
         "longitude": 38.97022247314454
       },
       "id": 4
+    },
+    {
+      "name": "2112313",
+      "rating": 4,
+      "description": null,
+      "tags": [
+        "Бар",
+        "Паб"
+      ],
+      "photos": [],
+      "coordinates": {
+        "latitude": 45.029983518197426,
+        "longitude": 38.99339675903321
+      },
+      "id": 5
     }
   ]
 }

@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { removeElementAtIndex, findElementIndex } from 'src/app/lib';
+import { MapService } from 'src/app/map.service';
 
 @Component({
   selector: 'mn-tags-filter',
   templateUrl: './tags-filter.component.html',
   styleUrls: ['./tags-filter.component.scss']
 })
-export class TagsFilterComponent implements OnInit {
+export class TagsFilterComponent implements AfterViewInit {
   @Input()
   public elements: string[]
   @Input()
@@ -15,9 +16,12 @@ export class TagsFilterComponent implements OnInit {
   @Output()
   public selectedChanges = new EventEmitter<string[]>()
 
-  constructor() { }
+  constructor(private mapService: MapService) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.mapService.waitForMapInit().then((map) => {
+      this.selectedChanges.emit(this.selected)
+    })
   }
 
   public onClickTag(index: number): void {
