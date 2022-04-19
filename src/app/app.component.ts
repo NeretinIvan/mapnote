@@ -4,6 +4,7 @@ import { DialogService } from "./dialog.service"
 import { LeafletMap } from "./lib"
 import { MapService } from "./map.service"
 
+
 @Component({
   selector: "mn-root",
   templateUrl: "./app.component.html",
@@ -11,11 +12,16 @@ import { MapService } from "./map.service"
 })
 export class AppComponent implements AfterViewInit {
   constructor(private mapService: MapService,
-              private dialogService: DialogService) {
+              public readonly dialogService: DialogService) {
   }
 
   public ngAfterViewInit(): void {
-    const map = new LeafletMap("map-container", {
+    const map = this.initMap()
+    this.mapService.setLeafletMap(map)
+  }
+
+  private initMap(): LeafletMap {
+    return new LeafletMap("map-container", {
       layers: [
         new TileLayer("https://{s}.google.com/vt?x={x}&y={y}&z={z}", {
           subdomains: [ 'mt0', 'mt1', 'mt2', 'mt3' ]
@@ -24,7 +30,5 @@ export class AppComponent implements AfterViewInit {
       center: new LatLng(45.040034, 38.975828),
       zoom: 13
     })
-
-    this.mapService.setLeafletMap(map)
   }
 }

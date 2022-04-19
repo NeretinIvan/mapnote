@@ -1,6 +1,9 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, ElementRef, OnInit, Output, EventEmitter } from "@angular/core"
 import { FormControl } from "@angular/forms"
+import { LeafletMouseEvent } from "leaflet"
+import { DialogService } from "../../../../dialog.service"
 import { MapService } from "../../../../map.service"
+import { MapMarkerRendererService } from "src/app/map-marker-renderer.service"
 
 @Component({
   selector: "mn-shell",
@@ -11,16 +14,21 @@ export class ShellComponent implements OnInit {
   public isShowAddButton: boolean = false
   public searchFormControl: FormControl = new FormControl()
 
-  constructor(private mapService: MapService) {
+  constructor(
+    private mapService: MapService,
+    private element: ElementRef<HTMLElement>,
+    private dialogService: DialogService,
+    private mapMarkerRenderer: MapMarkerRendererService) {
   }
 
   public ngOnInit(): void {
     this.mapService.isReady.then((map) => {
-      map.addEventListener("click", (event) => {
+      map.addEventListener("click", (event: LeafletMouseEvent) => {
         this.isShowAddButton = true
+        this.dialogService.isCurrentEditLatLng = event.latlng
       })
 
-      map.addEventListener("blur", () => {
+      this.element.nativeElement.addEventListener("click", () => {
         this.isShowAddButton = false
       })
     })
@@ -31,5 +39,10 @@ export class ShellComponent implements OnInit {
   }
 
   public onClickAddButton(): void {
+    this.dialogService.showDialog(this.dialogService.dialogs.PlaceEdit)
+  }
+
+  public onChangeSelectedTags(tags: string[]): void {
+    this.mapMarkerRenderer.renderMarkers(tags)
   }
 }
