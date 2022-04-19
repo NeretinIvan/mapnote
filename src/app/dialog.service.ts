@@ -5,14 +5,13 @@ import { LatLng } from "leaflet"
   providedIn: "root"
 })
 export class DialogService {
+  public isCurrentEditLatLng: LatLng | null = null
   private currentDialog: Dialog = Dialog.MapView
 
   public showDialog(dialog: Dialog): void {
     this.currentDialog = dialog
   }
-  //public isShowCreateOrEditDialog: boolean = false
-  public isCurrentEditLatLng: LatLng | null = null
-
+  
   public getCurrentDialog(): Dialog {
     return this.currentDialog
   }
