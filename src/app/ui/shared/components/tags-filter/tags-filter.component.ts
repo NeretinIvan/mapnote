@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { removeElementAtIndex, findElementIndex } from 'src/app/lib';
 
 @Component({
   selector: 'mn-tags-filter',
@@ -7,9 +8,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TagsFilterComponent implements OnInit {
   @Input()
-  public elements: string[] = ['one', 'two', 'three']
+  public elements: string[]
   @Input()
-  public selected: string[] = ['two']
+  public selected: string[]
 
   @Output()
   public selectedChanges = new EventEmitter<string[]>()
@@ -19,9 +20,17 @@ export class TagsFilterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public onClickTag(index: number) {
-    //todo: also logic which adds or removes element
+  public onClickTag(index: number): void {
+    const selectedTag: string = this.elements[index];
+
+    if (this.selected.includes(selectedTag)) {
+      const tagIndex = findElementIndex(selectedTag, this.selected)
+      this.selected = removeElementAtIndex(tagIndex, this.selected)
+    }
+    else {
+      this.selected = new Array(...this.selected, selectedTag)
+    }
+
     this.selectedChanges.emit(this.selected)
   }
-
 }

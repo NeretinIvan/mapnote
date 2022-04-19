@@ -10,7 +10,7 @@ export class DialogService {
   public showDialog(dialog: Dialog): void {
     this.currentDialog = dialog
   }
-  //public isShowCreateOrEditDialog: boolean = false
+
   public isCurrentEditLatLng: LatLng | null = null
 
   public getCurrentDialog(): Dialog {

@@ -8,6 +8,9 @@ import { TagsFilterComponent } from './tags-filter.component';
   declarations: [
     TagsFilterComponent
   ],
+  exports: [
+    TagsFilterComponent
+  ],
   imports: [
     CommonModule
   ]

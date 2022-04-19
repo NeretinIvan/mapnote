@@ -1,1 +1,12 @@
-<p>tags-filter works!</p>
+<div class="tags-container">
+    <ul class="tags">
+      <li *ngFor="let item of elements; index as index" class="tag">
+        <button 
+            class="tag-button" 
+            [class.is-selected]="selected.includes(item)"
+            (click)="onClickTag(index)">
+            {{item}}
+        </button>
+      </li>
+    </ul>
+  </div>
